@@ -193,8 +193,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 244085575}
-  m_Father: {fileID: 615884297}
-  m_RootOrder: 1
+  m_Father: {fileID: 917820940}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &244085571
 GameObject:
@@ -317,8 +317,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 917820940}
-  - {fileID: 175245495}
-  - {fileID: 920639815}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -353,6 +351,8 @@ Transform:
   m_Children:
   - {fileID: 1981365482}
   - {fileID: 125835346}
+  - {fileID: 175245495}
+  - {fileID: 920639815}
   m_Father: {fileID: 615884297}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -381,7 +381,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c038b7455ee456483c3936bc74294f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1237644167}
 --- !u!1 &920639814
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,8 +409,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1898615637}
-  m_Father: {fileID: 615884297}
-  m_RootOrder: 2
+  m_Father: {fileID: 917820940}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1237644165
 GameObject:
@@ -424,6 +423,7 @@ GameObject:
   - component: {fileID: 1237644168}
   - component: {fileID: 1237644167}
   - component: {fileID: 1237644166}
+  - component: {fileID: 1237644169}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -496,6 +496,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1237644169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237644165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8285bc2f23e4646afae92927c26ce77b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 917820940}
+  offset: {x: 0, y: 15, z: 0}
+  smoothTime: 0.01
 --- !u!1 &1371994858
 GameObject:
   m_ObjectHideFlags: 0
