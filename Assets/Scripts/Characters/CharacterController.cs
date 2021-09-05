@@ -12,16 +12,11 @@ namespace SphereAdventure.Character
 		private float xInput;
 		private float yInput;
 
-		private Vector3 mousePos;
-
 		private CharacterMotor motor;
-
-		public Camera cam;
 
         private void Start()
         {
 			motor = GetComponent<CharacterMotor>();
-			//cam = Camera.main;
         }
 
         private void Update()
@@ -32,11 +27,13 @@ namespace SphereAdventure.Character
 			Vector3 move = transform.right * xInput + transform.forward * yInput;
 			motor.Movement(move);
 
-			mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
-
-			Debug.Log(mousePos);
-
-			motor.RotateToTarget(new Vector3(mousePos.x, transform.position.y, mousePos.z));
+			RaycastHit hit;
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+			if (Physics.Raycast(ray, out hit, 100))
+			{
+				//transform.LookAt(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+				motor.RotateToTarget(new Vector3(hit.point.x, transform.position.y, hit.point.z));
+			}
 		}
 	}
 }
