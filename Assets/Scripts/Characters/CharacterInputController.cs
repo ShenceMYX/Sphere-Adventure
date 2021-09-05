@@ -7,12 +7,14 @@ namespace SphereAdventure.Character
 	/// <summary>
 	/// 玩家角色控制器
 	/// </summary>
-	public class CharacterController : MonoBehaviour
+	public class CharacterInputController : MonoBehaviour
 	{
 		private float xInput;
 		private float yInput;
 
 		private CharacterMotor motor;
+
+		private bool layoutOrganization;
 
         private void Start()
         {
@@ -21,6 +23,10 @@ namespace SphereAdventure.Character
 
         private void Update()
         {
+			if (Input.GetKeyDown(KeyCode.Tab)) layoutOrganization = !layoutOrganization;
+
+			if (layoutOrganization) return;
+
 			xInput = Input.GetAxis("Horizontal");
 			yInput = Input.GetAxis("Vertical");
 
