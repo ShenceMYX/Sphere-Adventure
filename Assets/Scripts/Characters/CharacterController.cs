@@ -24,7 +24,7 @@ namespace SphereAdventure.Character
 			xInput = Input.GetAxis("Horizontal");
 			yInput = Input.GetAxis("Vertical");
 
-			Vector3 move = transform.right * xInput + transform.forward * yInput;
+			Vector3 move = Vector3.right * xInput + Vector3.forward * yInput;
 			motor.Movement(move);
 
 			RaycastHit hit;

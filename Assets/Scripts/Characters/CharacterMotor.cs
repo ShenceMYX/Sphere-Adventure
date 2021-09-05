@@ -13,7 +13,7 @@ namespace SphereAdventure.Character
 
 		public void Movement(Vector3 dir)
         {
-			transform.Translate(dir * moveSpeed * Time.deltaTime);
+			transform.parent.Translate(dir * moveSpeed * Time.deltaTime);
         }
 
 		public void RotateToTarget(Vector3 targetPoint)
