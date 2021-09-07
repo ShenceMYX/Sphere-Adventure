@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using SphereAdventure.Character;
 using UnityEngine;
 
 namespace SphereAdventure
@@ -22,6 +23,8 @@ namespace SphereAdventure
 
         private void Update()
         {
+			if (CharacterInputController.Instance.layoutOrganizing) return;
+
 			transform.position = Vector3.SmoothDamp(transform.position, target.position + offset, ref cameraVelocity, smoothTime);
         }
 
