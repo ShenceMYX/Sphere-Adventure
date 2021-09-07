@@ -98,8 +98,8 @@ namespace SphereAdventure.Layout
                 targetGrid.occupied = true;
                 transform.position = targetGrid.transform.position;
                 currentGrid = targetGrid;
+                targetGrid.spRenderer.color = targetGrid.originalColor;
             }
-            targetGrid.spRenderer.color = targetGrid.originalColor;
         }
 
 
