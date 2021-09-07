@@ -99,6 +99,7 @@ namespace SphereAdventure.Layout
                 transform.position = targetGrid.transform.position;
                 currentGrid = targetGrid;
             }
+            targetGrid.spRenderer.color = targetGrid.originalColor;
         }
 
 

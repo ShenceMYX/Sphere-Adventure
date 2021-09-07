@@ -14,8 +14,9 @@ namespace SphereAdventure.Layout
         {
             if(other.CompareTag("NewCharacter"))
             {
+                if (GridsManager.Instance.GetAvaliableGrid() == null) { Debug.Log("No Available Space"); return; }
                 other.transform.parent = transform.parent.FindChildByName("Followers");
-                other.transform.localPosition = new Vector3(0, 0, -1.34f);
+                other.transform.localPosition = GridsManager.Instance.GetAvaliableGrid().transform.localPosition;
                 other.tag = "Player";
                 other.gameObject.AddComponent<DragableObject>();
             }

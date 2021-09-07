@@ -29,6 +29,7 @@ namespace SphereAdventure.Layout
 			unoccupiedColor = Color.green;
 			spRenderer = GetComponentInChildren<SpriteRenderer>();
 			originalColor = spRenderer.color;
+			spRenderer.enabled = false;
 
 			mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
 		}
@@ -45,16 +46,17 @@ namespace SphereAdventure.Layout
 			return Camera.main.ScreenToWorldPoint(mousePoint);
 		}
 
-        private void OnEnable()
-        {
-			checkGirdOccupiedOnce = true;
-			StartCoroutine(UnckeckGirdOccupied());
-		}
+  //      private void OnEnable()
+  //      {
+		//	checkGirdOccupiedOnce = true;
+		//	StartCoroutine(UnckeckGirdOccupied());
+		//}
 
         private void OnTriggerEnter(Collider other)
         {
 			if (other.CompareTag("Player"))
             {
+				if (other.GetComponent<DragableObject>() == null) return;
 				//如果正在 排兵布阵 且射线检测到当前物体为带有Player标签带可抓取物体
 				if (other.GetComponent<DragableObject>().canDragged)
                 {
@@ -70,17 +72,22 @@ namespace SphereAdventure.Layout
                         else
                             spRenderer.color = occupiedColor;
                     }
+
 					
-
-
 				}
 
-                if (checkGirdOccupiedOnce)
-                {
+				//            if (checkGirdOccupiedOnce)
+				//            {
+				//	occupied = true;
+				//	other.GetComponent<DragableObject>().currentGrid = this;
+				//}
+
+				if (!CharacterInputController.Instance.layoutOrganizing)
+				{
+					Debug.Log("etr");
 					occupied = true;
 					other.GetComponent<DragableObject>().currentGrid = this;
 				}
-
 
 
 			}
@@ -96,6 +103,7 @@ namespace SphereAdventure.Layout
         {
 			if (other.CompareTag("Player"))
 			{
+				if (other.GetComponent<DragableObject>() == null) return;
 				if (other.GetComponent<DragableObject>().canDragged)
 				{
 					if (other.GetComponent<DragableObject>().isDragging)
@@ -117,6 +125,7 @@ namespace SphereAdventure.Layout
         {
 			if (other.CompareTag("Player"))
             {
+				if (other.GetComponent<DragableObject>() == null) return;
 				if (other.GetComponent<DragableObject>().canDragged)
 				{
                     if (other.GetComponent<DragableObject>().isDragging)

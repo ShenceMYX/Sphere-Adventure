@@ -20,6 +20,7 @@ namespace SphereAdventure.Character
 		public bool layoutOrganizing;
 
 		private GameObject gridLayout;
+		private Transform followersTrans;
 
 		//进行排兵布阵时 原来跟随玩家运动的子物体 需要取消它们与玩家的父子关系 否则排兵布阵时也会跟随玩家一起运动
 		private List<GameObject> flexibleParentObjs = new List<GameObject>();
@@ -32,9 +33,10 @@ namespace SphereAdventure.Character
         {
 			motor = GetComponent<CharacterMotor>();
 			gridLayout = transform.FindChildByName("Grids").gameObject;
+			followersTrans = transform.FindChildByName("Followers");
 
 			flexibleParentObjs.Add(gridLayout);
-			flexibleParentObjs.Add(transform.FindChildByName("Followers").gameObject);
+			flexibleParentObjs.Add(followersTrans.gameObject);
 			attractor = transform.FindChildByName("Attractor");
 			layer = LayerMask.GetMask("Player");
 		}
@@ -44,10 +46,20 @@ namespace SphereAdventure.Character
 			if (Input.GetKeyDown(KeyCode.Tab))
 			{
 				layoutOrganizing = !layoutOrganizing;
-				gridLayout.SetActive(layoutOrganizing);
+                for (int i = 0; i < gridLayout.transform.childCount; i++)
+                {
+					gridLayout.transform.GetChild(i).GetChild(0).GetComponent<SpriteRenderer>().enabled = layoutOrganizing;
+                }
+				//gridLayout.SetActive(layoutOrganizing);
 				attractor.gameObject.SetActive(!layoutOrganizing);
 				SetGridNFollowersParent(layoutOrganizing);
-			}
+
+                //if (!layoutOrganizing)
+                //{
+                //    transform.position = -followersTrans.GetChild(0).position;
+                //    followersTrans.GetChild(0).position = Vector3.zero;
+                //}
+            }
 
 			RaycastHit hit;
 
@@ -79,6 +91,8 @@ namespace SphereAdventure.Character
 			{
 				motor.RotateToTarget(new Vector3(hit.point.x, transform.position.y, hit.point.z));
 			}
+
+			//transform.position = followersTrans.GetChild(0).position;
 		}
 
         private void SetGridNFollowersParent(bool isModifyingLayout)
