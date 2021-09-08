@@ -10,16 +10,21 @@ namespace SphereAdventure.Ability
 	/// <summary>
 	/// 
 	/// </summary>
-	public class Exploder : MonoBehaviour
+	public class Exploder : AbiliyReleaser
 	{
         public GameObject explodePrefab;
         public float explosionDistance = 5f;
         public float explodeDelay = 0.5f;
         private float startCountTime;
 
-        private void Start()
+        private void OnEnable()
         {
             transform.parent.parent.GetComponent<CharacterInputController>().ExplodeAttckHandler += StartExplosion;
+        }
+
+        private void OnDisable()
+        {
+            transform.parent.parent.GetComponent<CharacterInputController>().ExplodeAttckHandler -= StartExplosion;
         }
 
         private IEnumerator Explosion(Vector3 dir)

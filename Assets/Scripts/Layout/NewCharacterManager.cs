@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Common;
 using UnityEngine;
+using SphereAdventure.Ability;
 
 namespace SphereAdventure.Layout
 {
@@ -19,6 +20,8 @@ namespace SphereAdventure.Layout
                 other.transform.localPosition = GridsManager.Instance.GetAvaliableGrid().transform.localPosition;
                 other.tag = "Player";
                 other.gameObject.AddComponent<DragableObject>();
+                if (other.GetComponent<AbiliyReleaser>() != null)
+                    other.GetComponent<AbiliyReleaser>().enabled = true;
             }
         }
     }

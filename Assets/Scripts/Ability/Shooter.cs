@@ -10,7 +10,7 @@ namespace SphereAdventure.Ability
     /// <summary>
     /// 
     /// </summary>
-    public class Shooter : MonoBehaviour
+    public class Shooter : AbiliyReleaser
     {
         public GameObject bulletPrefab;
 
@@ -19,9 +19,14 @@ namespace SphereAdventure.Ability
         public float shootInterval = 0.5f;
         private float startShootTime;
 
-        private void Start()
+        private void OnEnable()
         {
             transform.parent.parent.GetComponent<CharacterInputController>().ShootHandler += Shoot;
+        }
+
+        private void OnDisable()
+        {
+            transform.parent.parent.GetComponent<CharacterInputController>().ShootHandler -= Shoot;
         }
 
         public void Shoot(Vector3 target)

@@ -32,6 +32,9 @@ namespace SphereAdventure.Character
         public event Action<Vector3> ShootHandler;
         public event Action<Vector3> ExplodeAttckHandler;
 
+        public float dashIterval = 0.7f;
+        private float startDashTime;
+
         private void Start()
         {
 			motor = GetComponent<CharacterMotor>();
@@ -77,8 +80,12 @@ namespace SphereAdventure.Character
 
             if (Input.GetMouseButtonDown(1))
             {
-                motor.Dash(transform.forward);
-                ExplodeAttckHandler?.Invoke(transform.forward);
+                if(startDashTime < Time.time)
+                {
+                    motor.Dash(transform.forward);
+                    ExplodeAttckHandler?.Invoke(transform.forward);
+                    startDashTime = Time.time + dashIterval;
+                }
             }
 
             //屏幕鼠标位置到世界坐标的射线检测
