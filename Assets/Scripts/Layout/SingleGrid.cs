@@ -84,7 +84,6 @@ namespace SphereAdventure.Layout
 
 				if (!CharacterInputController.Instance.layoutOrganizing)
 				{
-					Debug.Log("etr");
 					occupied = true;
 					other.GetComponent<DragableObject>().currentGrid = this;
 				}

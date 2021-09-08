@@ -11,6 +11,11 @@ namespace SphereAdventure.Character
 	{
 		public float moveSpeed = 100f;
 
+		public float dashSpeed = 100f;
+		public float dashDuration = 0.1f;
+		private float startDashTime = 0;
+
+
 		public void Movement(Vector3 dir)
         {
 			transform.parent.Translate(dir * moveSpeed * Time.deltaTime);
@@ -22,5 +27,20 @@ namespace SphereAdventure.Character
 			Vector3 eulerDir = dir.eulerAngles;
 			transform.eulerAngles = new Vector3(0, eulerDir.y, 0);
 		}
+
+		private IEnumerator StartDash(Vector3 dir)
+        {
+			startDashTime = Time.time + dashDuration;
+            while (Time.time < startDashTime)
+            {
+				Movement(dir * dashSpeed * Time.deltaTime);
+				yield return null;
+			}
+		}
+
+        public void Dash(Vector3 dir)
+        {
+			StartCoroutine(StartDash(dir));
+        }
 	}
 }

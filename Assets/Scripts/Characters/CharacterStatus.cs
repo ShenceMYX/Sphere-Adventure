@@ -11,7 +11,7 @@ namespace SphereAdventure.Character
 	public class CharacterStatus : MonoBehaviour
 	{
 		public float maxHealth;
-		private float currentHealth;
+		public float currentHealth;
 
         private void Start()
         {
@@ -21,7 +21,7 @@ namespace SphereAdventure.Character
 		public void Damage(float amount)
         {
 			currentHealth -= amount;
-			if (amount <= 0)
+			if (currentHealth <= 0)
 				Death();
         }
 

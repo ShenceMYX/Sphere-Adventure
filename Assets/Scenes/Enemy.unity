@@ -226,8 +226,9 @@ GameObject:
   - component: {fileID: 156196797}
   - component: {fileID: 156196798}
   - component: {fileID: 156196799}
+  - component: {fileID: 156196800}
   m_Layer: 0
-  m_Name: DumpEnemy
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -277,6 +278,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 536bffea51d3bf74db47d014e2c49440, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &156196800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156196796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aa2d7bd93b204c488ada4d80b733a43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
 --- !u!1 &1011291633
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1012015683}
   m_Layer: 0
-  m_Name: DumpEnemy
+  m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
