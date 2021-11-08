@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Common;
 using SphereAdventure.Layout;
+using SphereAdventure.Skill;
 using UnityEngine;
 
 namespace SphereAdventure.Character
@@ -12,9 +13,6 @@ namespace SphereAdventure.Character
 	/// </summary>
 	public class CharacterInputController : MonoSingleton<CharacterInputController>
 	{
-		private float xInput;
-		private float yInput;
-
 		private CharacterMotor motor;
 
 		public bool layoutOrganizing;
@@ -35,9 +33,15 @@ namespace SphereAdventure.Character
         public float dashIterval = 0.7f;
         private float startDashTime;
 
+        private SkillManager skillManager;
+
+        [HideInInspector]
+        public Vector3 dir;
+
         private void Start()
         {
 			motor = GetComponent<CharacterMotor>();
+            skillManager = GetComponent<SkillManager>();
 			gridLayout = transform.FindChildByName("Grids").gameObject;
 			followersTrans = transform.FindChildByName("Followers");
 
@@ -77,6 +81,19 @@ namespace SphereAdventure.Character
             //Vector3 move = Vector3.right * xInput + Vector3.forward * yInput;
             //if (xInput != 0 || yInput != 0)
             //	motor.Dash(move);
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                SkillData skillData = skillManager.PrepareSkill(1001);
+                if (skillData != null)
+                    skillManager.GenerateSkill(skillData);
+
+            }
+            else if (Input.GetKeyDown(KeyCode.W))
+            {
+                SkillData skillData = skillManager.PrepareSkill(1002);
+                if (skillData != null)
+                    skillManager.GenerateSkill(skillData);
+            }
 
             if (Input.GetMouseButtonDown(1))
             {
@@ -91,7 +108,7 @@ namespace SphereAdventure.Character
             //屏幕鼠标位置到世界坐标的射线检测
             if (Physics.Raycast(ray, out hit, 100))
             {
-                Vector3 dir = hit.point - transform.position;
+                dir = hit.point - transform.position;
 
                 //Debug.Log(dir.magnitude);
                 if (dir.magnitude > 3f)

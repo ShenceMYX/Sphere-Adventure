@@ -21,7 +21,7 @@ namespace SphereAdventure.Layout
 		private float mZCoord;
 
 		//在组件被启用的第一帧检测物体是否在碰撞器内
-		private bool checkGirdOccupiedOnce = false;
+		//private bool checkGirdOccupiedOnce = false;
 
 		private void Start()
         {
@@ -92,11 +92,6 @@ namespace SphereAdventure.Layout
 			}
 		}
 
-		private IEnumerator UnckeckGirdOccupied()
-        {
-			yield return new WaitForSeconds(0.1f);
-			checkGirdOccupiedOnce = false;
-		}
 
 		private void OnTriggerStay(Collider other)
         {
@@ -139,10 +134,6 @@ namespace SphereAdventure.Layout
 			}
 		}
 
-        private void Update()
-        {
-			//spRenderer.color = occupied ? occupiedColor : unoccupiedColor;
-        }
 
     }
 }

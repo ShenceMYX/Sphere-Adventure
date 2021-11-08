@@ -8,7 +8,8 @@ namespace SphereAdventure.Character
 	/// <summary>
 	/// 玩家马达
 	/// </summary>
-	public class CharacterMotor : MonoSingleton<CharacterMotor>
+	public class CharacterMotor //: MonoBehaviour
+	: MonoSingleton<CharacterMotor>
 	{
 		public float moveSpeed = 100f;
 
@@ -41,7 +42,6 @@ namespace SphereAdventure.Character
 
         public void Dash(Vector3 dir)
         {
-
 			StartCoroutine(StartDash(dir));
         }
 	}

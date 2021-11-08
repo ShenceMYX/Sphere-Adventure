@@ -12,12 +12,12 @@ namespace SphereAdventure.Ability
 	{
         private void OnEnable()
         {
-            CharacterMotor.Instance.moveSpeed += 5;
+            //CharacterMotor.Instance.moveSpeed += 5;
         }
 
         private void OnDestroy()
         {
-            CharacterMotor.Instance.moveSpeed -= 5;
+            //CharacterMotor.Instance.moveSpeed -= 5;
         }
     }
 }
